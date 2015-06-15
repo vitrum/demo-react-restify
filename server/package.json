@@ -1,0 +1,33 @@
+{
+  "name": "demo-react-restiy-server",
+  "version": "1.0.0",
+  "description": "restiy server",
+  "keywords": [
+    "restiy",
+    "Node.js",
+    "application"
+  ],
+  "author": {
+    "name": "vitrum",
+    "email": "vitrum.cn@gmail.com",
+    "url": "https://github.com/vitrum"
+  },
+  "homepage": "https://github.com/vitrum/demo-react-restify",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vitrum/demo-react-restify"
+  },
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
+  "dependencies": {
+    "restify": "2.8.3",
+    "node-restify-validation": "~1.0.2",
+    "node-restify-swagger": "~0.1.8"
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+  "private": true,
+  "main": "swagger-server.js"
+}
