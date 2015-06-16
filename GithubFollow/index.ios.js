@@ -5,49 +5,33 @@
 'use strict';
 
 var React = require('react-native');
-var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-} = React;
+var HomeView = require('./App/Views/Home');
 
-var GithubFollow = React.createClass({
-  render: function() {
+
+class GithubFollow extends React.Component {
+  render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <React.NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'React Demo App',
+          component: HomeView,
+        }}/>
     );
+  }
+}
+
+var styles = React.StyleSheet.create({
+  container: {
+    flex: 1
   }
 });
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
-AppRegistry.registerComponent('GithubFollow', () => GithubFollow);
+class HelloWorld extends React.Component {
+  render() {
+    return <React.Text style={styles.text}>Hello World (Again)</React.Text>;
+  }
+}
+
+React.AppRegistry.registerComponent('GithubFollow', () => GithubFollow);
