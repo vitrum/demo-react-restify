@@ -26,7 +26,7 @@ server.use(
 
 server.post('/login/user', function (req, res, next) {
 	console.log('login');
-	console.log(req.headers);
+	console.log(req);
   res.send(req.headers);
   return next();
 });

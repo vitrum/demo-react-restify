@@ -90,7 +90,8 @@ class SearchPage extends Component {
     this.state = {
       searchString: 'london',
       isLoading: false,
-      message: ''
+      message: '',
+      jsonData: ''
     };
   }
 
@@ -127,6 +128,25 @@ class SearchPage extends Component {
   onLoginPressed() {
     console.log(this.state.loginName);
     console.log(this.state.loginPassword);
+    fetch('http://192.168.2.101:3080/login/user', {
+      method: 'post',
+      body: JSON.stringify({
+        config_name: 'default',
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        email: this.state.email,
+        password: this.state.password,
+        password_confirmation: this.state.password_confirmation,
+        }).replace(/{|}/gi, "")
+      })
+    .then((responseData) => {
+      this.setState({
+        jsonData: responseData
+      });
+    });
+    console.log(this.state);
+
+
   }
 
 
@@ -172,6 +192,7 @@ class SearchPage extends Component {
 
         {spinner}
         <Text style={styles.description}>{this.state.message}</Text>
+        <Text style={styles.description}>{this.state.jsonData}</Text>
       </View>
     );
   }
