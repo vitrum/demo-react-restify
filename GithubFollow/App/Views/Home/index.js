@@ -80,7 +80,7 @@ function urlForQueryAndPage(key, value, pageNumber) {
     .map(key => key + '=' + encodeURIComponent(data[key]))
     .join('&');
 
-  return 'http://192.168.2.101' + querystring;
+  return 'http://192.168.2.101:3080/login/user' + querystring;
 };
 
 class SearchPage extends Component {
