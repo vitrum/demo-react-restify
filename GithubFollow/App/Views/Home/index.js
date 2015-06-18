@@ -126,27 +126,49 @@ class SearchPage extends Component {
     this._executeQuery(query);
   }
   onLoginPressed() {
-    console.log(this.state.loginName);
-    console.log(this.state.loginPassword);
-    fetch('http://192.168.2.101:3080/login/user', {
-      method: 'post',
+
+    var fetchObj = {  
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin': '',
+        'Host': 'api.producthunt.com'
+      },
       body: JSON.stringify({
-        config_name: 'default',
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        email: this.state.email,
-        password: this.state.password,
-        password_confirmation: this.state.password_confirmation,
-        }).replace(/{|}/gi, "")
+        'name': this.state.loginName,
+        'password': this.state.loginPassword,
+        'grant_type': 'client_credentials'
       })
-    .then((responseData) => {
-      this.setState({
-        jsonData: responseData
+    };
+
+    fetch('http://192.168.2.101:3080/login/user', fetchObj)  
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(resJson) {
+        return resJson;
+      })
+      .then((responseData) => {
+        this.setState({
+          jsonData: responseData
+        });
       });
-    });
-    console.log(this.state);
+    // fetch('http://192.168.2.101:3080/login/user', {
+    //   method: 'post',
+    //   body: JSON.stringify({
+    //     contentType: 'application/json',
+    //     config_name: 'default',
+    //     name: this.state.loginName,
+    //     password: this.state.loginPassword,
 
-
+    //     }).replace(/{|}/gi, "")
+    //   })
+    // .then((responseData) => {
+    //   this.setState({
+    //     jsonData: responseData
+    //   });
+    // });
   }
 
 
@@ -165,6 +187,7 @@ class SearchPage extends Component {
 
     return (
       <View style={styles.container}>
+      <Text style={styles.description}>{this.state.jsonData}</Text>
         <Text style={styles.description}>
           React Demo Login
         </Text>
@@ -192,7 +215,7 @@ class SearchPage extends Component {
 
         {spinner}
         <Text style={styles.description}>{this.state.message}</Text>
-        <Text style={styles.description}>{this.state.jsonData}</Text>
+        
       </View>
     );
   }

@@ -12,7 +12,7 @@ server.use(restify.bodyParser());
 server.use(restify.authorizationParser());
 server.use(restify.dateParser());
 server.use(restify.jsonp());
-server.use(restify.bodyParser());
+
 
 
 server.use(
@@ -24,12 +24,26 @@ server.use(
     }
 );
 
-server.post('/login/user', function (req, res, next) {
-	console.log('login');
-	console.log(req);
-  res.send(req.headers);
-  return next();
-});
+
+
+
+function loginHandler(req,res,next) {
+    // Get the first_name value from the POSTed data
+    var name = req.body.name
+    ,   password = req.body.password;
+ 
+    // Send back the value they posted
+    res.send(req.body);
+    // res.send(name + ',' + password);
+
+    //test
+    // curl -X POST -H "Content-Type: application/json" -d '{"name":"Joe"}' http://localhost:3080/login/user
+}
+
+
+
+
+server.post('/login/user', loginHandler)
 
 server.get('/echo/:name', function (req, res, next) {
 	console.log('echo');
@@ -38,7 +52,7 @@ server.get('/echo/:name', function (req, res, next) {
 });
 
 
-server.get('/json/v1',function(req,res,next){
+server.post('/json/v1',function(req,res,next){
   var a = {name:'conan',blog:'blog.fens.me'}
   res.send(a);
 });
