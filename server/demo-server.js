@@ -29,11 +29,12 @@ server.use(
 
 function loginHandler(req,res,next) {
     // Get the first_name value from the POSTed data
-    var name = req.body.name
-    ,   password = req.body.password;
+    var json = {name:req.body.name, password:req.body.password };
+    
+
  
     // Send back the value they posted
-    res.send(req.body);
+    res.send(json);
     // res.send(name + ',' + password);
 
     //test

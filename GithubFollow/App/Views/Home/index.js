@@ -144,14 +144,17 @@ class SearchPage extends Component {
 
     fetch('http://192.168.2.101:3080/login/user', fetchObj)  
       .then(function(res) {
+        console.log(res);
         return res.json();
       })
-      .then(function(resJson) {
-        return resJson;
-      })
+      // .then(function(resJson) {
+      //   console.log(resJson);
+      //   return resJson;
+      // })
       .then((responseData) => {
+        console.log(responseData);
         this.setState({
-          jsonData: responseData
+          jsonData: responseData.name
         });
       });
     // fetch('http://192.168.2.101:3080/login/user', {
